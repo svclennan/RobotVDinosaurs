@@ -21,21 +21,75 @@ namespace RobotsVsDinos
 
         public void Attack(Fleet enemy)
         {
-            /*foreach (Dinosaur dino in army)
-            {
-                //Console.WriteLine("Who would you like " + dino.WriteLine() + " to attack?");
-                //enemy.WriteLine();
-                //string target = Console.ReadLine();
-                //dino.Attack(target, enemy);
-            }*/
             Random random = new Random();
-            foreach (Robot robo in enemy.army)
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Who would you like " + army[i].type + " to attack?");
+                enemy.WriteLine();
+                string target = Console.ReadLine();
+                switch (target.ToUpper())
+                {
+                    case ("C-3PO"):
+                        {
+                            int index = enemy.getRobotIndex("C-3PO");
+                            enemy.army[index].health -= army[i].attackPower;
+                            Console.WriteLine();
+                            Console.WriteLine("C-3PO has " + enemy.army[index].health + " health left!");
+                            break;
+                        }
+                    case ("R2-D2"):
+                        {
+                            int index = enemy.getRobotIndex("R2-D2");
+                            enemy.army[index].health -= army[i].attackPower;
+                            Console.WriteLine();
+                            Console.WriteLine("R2-D2 has " + enemy.army[index].health + " health left!");
+                            break;
+                        }
+                    case ("BB-8"):
+                        {
+                            int index = enemy.getRobotIndex("BB-8");
+                            enemy.army[index].health -= army[i].attackPower;
+                            Console.WriteLine();
+                            Console.WriteLine("BB-8 has " + enemy.army[index].health + " health left!");
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("That is not a valid option");
+                            break;
+                        }
+                }
+            }
+
+                //if (target.ToUpper() == robo.name.ToUpper())
+                //{
+                //    int missChance = random.Next(11);
+                //    if (army[i].energy != 0 && missChance != 1)
+                //    {
+                //        robo.health -= army[i].attackPower;
+                //    }
+                //    else
+                //    {
+                //        i--;
+                //    }
+                //}
+                //Console.WriteLine(robo.health);
+            /*foreach (Robot robo in enemy.army)
             {
                 for(int i = 0; i<3; i++)
                 {
                     Console.WriteLine("Who would you like " + army[i].type + " to attack?");
                     enemy.WriteLine();
                     string target = Console.ReadLine();
+                    switch (target.ToUpper())
+                    {
+                        case ("C-3PO"):
+                            {
+                                int index = enemy.getRobotIndex("C-3PO");
+                                
+                                break;
+                            }
+                    }
                     if (target.ToUpper() == robo.name.ToUpper())
                     {
                         int missChance = random.Next(11);
@@ -50,7 +104,7 @@ namespace RobotsVsDinos
                     }
                     Console.WriteLine(robo.health);
                 }
-            }
+            }*/
             /*for (int i = 0; i < 3; i++)
             {
                 foreach (Robot robo in enemy.army)
@@ -94,12 +148,23 @@ namespace RobotsVsDinos
                 Console.WriteLine(robo.health);
             }*/
         }
+        public int getDinoIndex(string name)
+        {
+            for (int i = 0; i < army.Count(); i++)
+            {
+                if (name == army[i].type)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
 
         public void WriteLine()
         {
             foreach (Dinosaur dino in army)
             {
-                Console.WriteLine(dino);
+                Console.WriteLine(dino.type);
             }
         }
     }

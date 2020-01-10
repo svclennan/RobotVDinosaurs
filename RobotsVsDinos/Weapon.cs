@@ -13,8 +13,9 @@ namespace RobotsVsDinos
 
         public Weapon()
         {
+            //Add a Healer Bot
             bool validChoice = false;
-            Console.WriteLine("What weapon would you like to use?\n1)Sword?\n2)Gun\n3)Axe\n4)Bomb");
+            Console.WriteLine("What weapon would you like to use?\n1)Sword\n2)Gun\n3)Axe\n4)Bomb");
             int weapon = Convert.ToInt32(Console.ReadLine());
             while (!validChoice)
             {
@@ -45,6 +46,13 @@ namespace RobotsVsDinos
                         {
                             this.name = "Bomb";
                             this.damage = 8;
+                            validChoice = true;
+                            break;
+                        }
+                    case 5:
+                        {
+                            this.name = "Healer";//Start of Healer
+                            this.damage = 0;
                             validChoice = true;
                             break;
                         }

@@ -25,12 +25,22 @@ namespace RobotsVsDinos
             Random random = new Random();
             for (int i = 0; i < army.Count; i++)
             {
+                if (enemy.army.Count == 0)
+                {
+                    break;
+                }
                 Console.WriteLine("Who would you like " + army[i].name + " to attack?");
                 enemy.WriteLine();
-                int target = Convert.ToInt32(Console.ReadLine());
+                bool validInput = int.TryParse(Console.ReadLine(), out int target);
+                if (!validInput)
+                {
+                    i--;
+                    Console.WriteLine("Not a valid input.");
+                    continue;
+                }
                 if (target > enemy.army.Count)
                 {
-                    Console.WriteLine("That target is already dead.");
+                    Console.WriteLine("You attacked air... Try again.");
                     i--;
                     continue;
                 }

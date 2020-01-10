@@ -10,7 +10,7 @@ namespace RobotsVsDinos
     {
         static void Main(string[] args)
         {
-            Robot c3po = new Robot("C-3PO", "fists", 3);
+            Robot c3po = new Robot("C-3PO", "fists", 100);
             Robot r2d2 = new Robot("R2-D2" , "lightning", 8);
             Robot robo3 = new Robot();
             Fleet fleet = new Fleet(c3po);

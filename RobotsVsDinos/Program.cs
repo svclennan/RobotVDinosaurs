@@ -10,8 +10,8 @@ namespace RobotsVsDinos
     {
         static void Main(string[] args)
         {
-            Robot c3po = new Robot("C-3PO", "fists", 4);
-            Robot r2d2 = new Robot("R2-D2" , "lightning", 8);
+            Robot c3po = new Robot("C-3PO", 20, "Axe", 5);
+            Robot r2d2 = new Robot("R2-D2" , 25, "Gun", 6);
             Robot robo3 = new Robot();
             Fleet fleet = new Fleet(c3po);
             fleet.AddRobot(r2d2);
@@ -26,10 +26,6 @@ namespace RobotsVsDinos
 
             Battlefield arena = new Battlefield(herd, fleet);
 
-            //herd.Attack(fleet);
-            //Console.WriteLine();
-            //fleet.Attack(herd);
-            //Console.ReadLine();
             arena.Attack();
             Console.ReadLine();
         }

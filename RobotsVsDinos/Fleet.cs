@@ -104,6 +104,7 @@ namespace RobotsVsDinos
             if (target <= army.Count)
             {
                 army[target - 1].health += army[self].healPower;
+                Console.WriteLine(army[target - 1].name + " now has " + army[target-1].health + " health");
             }
             else
             {

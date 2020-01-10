@@ -19,22 +19,22 @@ namespace RobotsVsDinos
         {
             Console.WriteLine("What is your robots name?");
             this.name = Console.ReadLine();
-            Console.WriteLine("How much health does " + name + " have?");
-            this.health = Convert.ToInt32(Console.ReadLine());
             this.weapon = new Weapon();
             if (this.weapon.weaponType == "fight")
             {
                 this.attackPower = weapon.damage;
+                this.health = 35;
             }
             else
             {
                 this.healPower = weapon.heal;
+                this.health = 45;
             }
         }
-        public Robot(string name, string weaponName, int damage)
+        public Robot(string name,int health, string weaponName, int damage)
         {
             this.name = name;
-            health = 20;
+            this.health = health;
             powerLevel = 100;
             this.weapon = new Weapon(weaponName, damage);
             this.attackPower = weapon.damage;

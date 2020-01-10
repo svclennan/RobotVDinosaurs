@@ -9,7 +9,6 @@ namespace RobotsVsDinos
     class Weapon
     {
         public int damage;
-        string name;
         public string weaponType;
         public int heal;
 
@@ -24,7 +23,6 @@ namespace RobotsVsDinos
                 {
                     case 1:
                         {
-                            this.name = "Sword";
                             this.damage = 3;
                             this.weaponType = "fight";
                             validChoice = true;
@@ -32,31 +30,27 @@ namespace RobotsVsDinos
                         }
                     case 2:
                         {
-                            this.name = "Gun";
-                            this.damage = 6;
+                            this.damage = 5;
                             this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
                     case 3:
                         {
-                            this.name = "Axe";
-                            this.damage = 5;
+                            this.damage = 4;
                             this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
                     case 4:
                         {
-                            this.name = "Bomb";
-                            this.damage = 8;
+                            this.damage = 7;
                             this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
                     case 5:
                         {
-                            this.name = "Healer";
                             this.heal = 6;
                             this.weaponType = "heal";
                             validChoice = true;
@@ -73,7 +67,6 @@ namespace RobotsVsDinos
         }
         public Weapon(string name, int damage)
         {
-            this.name = name;
             this.damage = damage;
         }
     }

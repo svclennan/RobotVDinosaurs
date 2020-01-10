@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace RobotsVsDinos
 {
@@ -14,15 +15,23 @@ namespace RobotsVsDinos
             army.Add(dinosaur);
         }
 
-        public void addDinosaur(Dinosaur dinosaur)
+        public void AddDinosaur(Dinosaur dinosaur)
         {
             army.Add(dinosaur);
         }
 
         public void Attack(Fleet enemy)
         {
+            /*foreach (Dinosaur dino in army)
+            {
+                if (dino.health <= 0)
+                {
+                    army.Remove(dino);
+                    break;
+                }
+            }*/
             Random random = new Random();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < army.Count; i++)
             {
                 Console.WriteLine("Who would you like " + army[i].type + " to attack?");
                 enemy.WriteLine();
@@ -33,24 +42,48 @@ namespace RobotsVsDinos
                         {
                             int index = enemy.getRobotIndex("C-3PO");
                             enemy.army[index].health -= army[i].attackPower;
+                            if (enemy.army[index].health <= 0)
+                            {
+                                enemy.army.Remove(enemy.army[index]);
+                                Console.WriteLine("C-3PO died!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("C-3PO has " + enemy.army[index].health + " health left!");
+                            }
                             Console.WriteLine();
-                            Console.WriteLine("C-3PO has " + enemy.army[index].health + " health left!");
                             break;
                         }
                     case ("R2-D2"):
                         {
                             int index = enemy.getRobotIndex("R2-D2");
                             enemy.army[index].health -= army[i].attackPower;
+                            if (enemy.army[index].health <= 0)
+                            {
+                                enemy.army.Remove(enemy.army[index]);
+                                Console.WriteLine("R2-D2 died!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("R2-D2 has " + enemy.army[index].health + " health left!");
+                            }
                             Console.WriteLine();
-                            Console.WriteLine("R2-D2 has " + enemy.army[index].health + " health left!");
                             break;
                         }
                     case ("BB-8"):
                         {
                             int index = enemy.getRobotIndex("BB-8");
                             enemy.army[index].health -= army[i].attackPower;
+                            if (enemy.army[index].health <= 0)
+                            {
+                                enemy.army.Remove(enemy.army[index]);
+                                Console.WriteLine("BB-8 died!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("BB-8 has " + enemy.army[index].health + " health left!");
+                            }
                             Console.WriteLine();
-                            Console.WriteLine("BB-8 has " + enemy.army[index].health + " health left!");
                             break;
                         }
                     default:
@@ -60,20 +93,22 @@ namespace RobotsVsDinos
                         }
                 }
             }
+            Thread.Sleep(1500);
+            Console.Clear();
 
-                //if (target.ToUpper() == robo.name.ToUpper())
-                //{
-                //    int missChance = random.Next(11);
-                //    if (army[i].energy != 0 && missChance != 1)
-                //    {
-                //        robo.health -= army[i].attackPower;
-                //    }
-                //    else
-                //    {
-                //        i--;
-                //    }
-                //}
-                //Console.WriteLine(robo.health);
+            //if (target.ToUpper() == robo.name.ToUpper())
+            //{
+            //    int missChance = random.Next(11);
+            //    if (army[i].energy != 0 && missChance != 1)
+            //    {
+            //        robo.health -= army[i].attackPower;
+            //    }
+            //    else
+            //    {
+            //        i--;
+            //    }
+            //}
+            //Console.WriteLine(robo.health);
             /*foreach (Robot robo in enemy.army)
             {
                 for(int i = 0; i<3; i++)
@@ -148,24 +183,34 @@ namespace RobotsVsDinos
                 Console.WriteLine(robo.health);
             }*/
         }
-        public int getDinoIndex(string name)
+
+        public int GetHealth()
         {
-            for (int i = 0; i < army.Count(); i++)
+            int total = 0;
+            foreach (Dinosaur dino in army)
             {
-                if (name == army[i].type)
-                {
-                    return i;
-                }
+                total += dino.health;
             }
-            return 0;
+            return total;
         }
 
         public void WriteLine()
         {
             foreach (Dinosaur dino in army)
             {
-                Console.WriteLine(dino.type);
+                Console.WriteLine(dino.type + "(" + dino.health + ")");
             }
+        }
+        public int getDinoIndex(string name)
+        {
+            for (int i = 0; i < army.Count(); i++)
+            {
+                if (name.ToUpper() == army[i].type.ToUpper())
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
     }
 }

@@ -19,11 +19,19 @@ namespace RobotsVsDinos
 
         public void Attack()
         {
-            
-            //int redDamage = blue.Attack();
-            //int blueDamage = red.Attack();
-            //blue.Defend(redDamage);
-            //red.Defend(blueDamage);
+            while(blue.army.Count > 0 && red.army.Count > 0)
+            {
+                blue.Attack(red);
+                red.Attack(blue);
+            }
+            if (red.army.Count == 0)
+            {
+                Console.WriteLine("Dinos Win!!!");
+            }
+            if (blue.army.Count == 0)
+            {
+                Console.WriteLine("Robots Win!!!");
+            }
         }
     }
 }

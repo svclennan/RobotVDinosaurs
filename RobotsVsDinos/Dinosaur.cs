@@ -14,10 +14,10 @@ namespace RobotsVsDinos
         public int attackPower;
         public string target;
 
-        public Dinosaur(string type, int attackPower)
+        public Dinosaur(string type, int health, int attackPower)
         {
             this.type = type;
-            health = 20;
+            this.health = health;
             energy = 100;
             this.attackPower = attackPower;
         }

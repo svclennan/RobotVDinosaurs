@@ -22,66 +22,61 @@ namespace RobotsVsDinos
 
         public void Attack(Fleet enemy)
         {
-            /*foreach (Dinosaur dino in army)
-            {
-                if (dino.health <= 0)
-                {
-                    army.Remove(dino);
-                    break;
-                }
-            }*/
             Random random = new Random();
             for (int i = 0; i < army.Count; i++)
             {
                 Console.WriteLine("Who would you like " + army[i].type + " to attack?");
                 enemy.WriteLine();
-                string target = Console.ReadLine();
-                switch (target.ToUpper())
+                int target = Convert.ToInt32(Console.ReadLine());
+                if (target > enemy.army.Count)
                 {
-                    case ("C-3PO"):
+                    Console.WriteLine("That target is already dead.");
+                    i--;
+                    continue;
+                }
+                switch (target)
+                {
+                    case (1):
                         {
-                            int index = enemy.getRobotIndex("C-3PO");
-                            enemy.army[index].health -= army[i].attackPower;
-                            if (enemy.army[index].health <= 0)
+                            enemy.army[0].health -= army[i].attackPower;
+                            if (enemy.army[0].health <= 0)
                             {
-                                enemy.army.Remove(enemy.army[index]);
-                                Console.WriteLine("C-3PO died!");
+                                Console.WriteLine(enemy.army[0].name + " died!");
+                                enemy.army.Remove(enemy.army[0]);
                             }
                             else
                             {
-                                Console.WriteLine("C-3PO has " + enemy.army[index].health + " health left!");
+                                Console.WriteLine(enemy.army[0].name + " has " + enemy.army[0].health + " health left!");
                             }
                             Console.WriteLine();
                             break;
                         }
-                    case ("R2-D2"):
+                    case (2):
                         {
-                            int index = enemy.getRobotIndex("R2-D2");
-                            enemy.army[index].health -= army[i].attackPower;
-                            if (enemy.army[index].health <= 0)
+                            enemy.army[1].health -= army[i].attackPower;
+                            if (enemy.army[1].health <= 0)
                             {
-                                enemy.army.Remove(enemy.army[index]);
-                                Console.WriteLine("R2-D2 died!");
+                                Console.WriteLine(enemy.army[1].name + " died!");
+                                enemy.army.Remove(enemy.army[1]);
                             }
                             else
                             {
-                                Console.WriteLine("R2-D2 has " + enemy.army[index].health + " health left!");
+                                Console.WriteLine(enemy.army[1].name + " has " + enemy.army[1].health + " health left!");
                             }
                             Console.WriteLine();
                             break;
                         }
-                    case ("BB-8"):
+                    case (3):
                         {
-                            int index = enemy.getRobotIndex("BB-8");
-                            enemy.army[index].health -= army[i].attackPower;
-                            if (enemy.army[index].health <= 0)
+                            enemy.army[2].health -= army[i].attackPower;
+                            if (enemy.army[2].health <= 0)
                             {
-                                enemy.army.Remove(enemy.army[index]);
-                                Console.WriteLine("BB-8 died!");
+                                Console.WriteLine(enemy.army[2].name + " died!");
+                                enemy.army.Remove(enemy.army[2]);
                             }
                             else
                             {
-                                Console.WriteLine("BB-8 has " + enemy.army[index].health + " health left!");
+                                Console.WriteLine(enemy.army[2].name + " has " + enemy.army[2].health + " health left!");
                             }
                             Console.WriteLine();
                             break;
@@ -89,6 +84,7 @@ namespace RobotsVsDinos
                     default:
                         {
                             Console.WriteLine("That is not a valid option");
+                            i--;
                             break;
                         }
                 }
@@ -196,9 +192,11 @@ namespace RobotsVsDinos
 
         public void WriteLine()
         {
+            int count = 1;
             foreach (Dinosaur dino in army)
             {
-                Console.WriteLine(dino.type + "(" + dino.health + ")");
+                Console.WriteLine(count + ")" + dino.type + "(" + dino.health + ")");
+                count++;
             }
         }
         public int getDinoIndex(string name)

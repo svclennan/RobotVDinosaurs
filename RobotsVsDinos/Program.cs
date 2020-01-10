@@ -10,16 +10,16 @@ namespace RobotsVsDinos
     {
         static void Main(string[] args)
         {
-            Robot c3po = new Robot("C-3PO", "fists", 2);
-            Robot r2d2 = new Robot("R2-D2" , "lightning", 4);
-            Robot bb8 = new Robot("BB-8", "bomb", 5);
+            Robot c3po = new Robot("C-3PO", "fists", 3);
+            Robot r2d2 = new Robot("R2-D2" , "lightning", 8);
+            Robot robo3 = new Robot();
             Fleet fleet = new Fleet(c3po);
             fleet.AddRobot(r2d2);
-            fleet.AddRobot(bb8);
+            fleet.AddRobot(robo3);
 
-            Dinosaur tRex = new Dinosaur("T-Rex", 6);
-            Dinosaur triceratops = new Dinosaur("Triceratops", 3);
-            Dinosaur raptor = new Dinosaur("Raptor", 2);
+            Dinosaur tRex = new Dinosaur("T-Rex", 25, 8);
+            Dinosaur triceratops = new Dinosaur("Triceratops", 35, 3);
+            Dinosaur raptor = new Dinosaur("Raptor", 10, 5);
             Herd herd = new Herd(tRex);
             herd.AddDinosaur(triceratops);
             herd.AddDinosaur(raptor);

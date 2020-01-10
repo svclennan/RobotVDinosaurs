@@ -14,6 +14,15 @@ namespace RobotsVsDinos
         public Weapon weapon;
         public int attackPower;
 
+        public Robot()
+        {
+            Console.WriteLine("What is your robots name?");
+            this.name = Console.ReadLine();
+            Console.WriteLine("How much health does " + name + " have?");
+            this.health = Convert.ToInt32(Console.ReadLine());
+            this.weapon = new Weapon();
+            this.attackPower = weapon.damage;
+        }
         public Robot(string name, string weaponName, int damage)
         {
             this.name = name;

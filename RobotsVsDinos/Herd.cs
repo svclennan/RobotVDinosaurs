@@ -22,7 +22,6 @@ namespace RobotsVsDinos
 
         public void Attack(Fleet enemy)
         {
-            Random random = new Random();
             for (int i = 0; i < army.Count; i++)
             {
                 if (enemy.army.Count == 0)
@@ -44,150 +43,11 @@ namespace RobotsVsDinos
                     i--;
                     continue;
                 }
-                switch (target)
-                {
-                    case (1):
-                        {
-                            enemy.army[0].health -= army[i].attackPower;
-                            if (enemy.army[0].health <= 0)
-                            {
-                                Console.WriteLine(enemy.army[0].name + " died!");
-                                enemy.army.Remove(enemy.army[0]);
-                            }
-                            else
-                            {
-                                Console.WriteLine(enemy.army[0].name + " has " + enemy.army[0].health + " health left!");
-                            }
-                            Console.WriteLine();
-                            break;
-                        }
-                    case (2):
-                        {
-                            enemy.army[1].health -= army[i].attackPower;
-                            if (enemy.army[1].health <= 0)
-                            {
-                                Console.WriteLine(enemy.army[1].name + " died!");
-                                enemy.army.Remove(enemy.army[1]);
-                            }
-                            else
-                            {
-                                Console.WriteLine(enemy.army[1].name + " has " + enemy.army[1].health + " health left!");
-                            }
-                            Console.WriteLine();
-                            break;
-                        }
-                    case (3):
-                        {
-                            enemy.army[2].health -= army[i].attackPower;
-                            if (enemy.army[2].health <= 0)
-                            {
-                                Console.WriteLine(enemy.army[2].name + " died!");
-                                enemy.army.Remove(enemy.army[2]);
-                            }
-                            else
-                            {
-                                Console.WriteLine(enemy.army[2].name + " has " + enemy.army[2].health + " health left!");
-                            }
-                            Console.WriteLine();
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("That is not a valid option");
-                            i--;
-                            break;
-                        }
-                }
+                TargetedAttack(enemy, i, target);
+                Console.WriteLine();
             }
             Thread.Sleep(1500);
             Console.Clear();
-
-            //if (target.ToUpper() == robo.name.ToUpper())
-            //{
-            //    int missChance = random.Next(11);
-            //    if (army[i].energy != 0 && missChance != 1)
-            //    {
-            //        robo.health -= army[i].attackPower;
-            //    }
-            //    else
-            //    {
-            //        i--;
-            //    }
-            //}
-            //Console.WriteLine(robo.health);
-            /*foreach (Robot robo in enemy.army)
-            {
-                for(int i = 0; i<3; i++)
-                {
-                    Console.WriteLine("Who would you like " + army[i].type + " to attack?");
-                    enemy.WriteLine();
-                    string target = Console.ReadLine();
-                    switch (target.ToUpper())
-                    {
-                        case ("C-3PO"):
-                            {
-                                int index = enemy.getRobotIndex("C-3PO");
-                                
-                                break;
-                            }
-                    }
-                    if (target.ToUpper() == robo.name.ToUpper())
-                    {
-                        int missChance = random.Next(11);
-                        if (army[i].energy != 0 && missChance != 1)
-                        {
-                            robo.health -= army[i].attackPower;
-                        }
-                        else
-                        {
-                            i--;
-                        }
-                    }
-                    Console.WriteLine(robo.health);
-                }
-            }*/
-            /*for (int i = 0; i < 3; i++)
-            {
-                foreach (Robot robo in enemy.army)
-                {
-                    Console.WriteLine("Who would you like " + army[i].type + " to attack?");
-                    enemy.WriteLine();
-                    string target = Console.ReadLine();
-                    if (target.ToUpper() == robo.name.ToUpper())
-                    {
-                        int missChance = random.Next(11);
-                        if (army[i].energy != 0 && missChance != 1)
-                        {
-                            robo.health -= army[i].attackPower;
-                        }
-                        else
-                        {
-                            i--;
-                        }
-                    }
-                    Console.WriteLine(robo.health);
-                }
-            }*/
-
-
-            /*foreach (Robot robo in enemy.army)
-            {
-                who would you like army[i] to attack
-                 * string = answer
-                 *if string.toupper == robo.name.toupper
-                 *      attack
-                 * else
-                 *      i--
-                 *
-                 *
-                int missChance = random.Next(11);
-                if (army[i].energy != 0 && missChance != 1)
-                {
-                    robo.health -= army[i].attackPower;
-                }
-                i++;
-                Console.WriteLine(robo.health);
-            }*/
         }
 
         public void WriteLine()
@@ -197,6 +57,29 @@ namespace RobotsVsDinos
             {
                 Console.WriteLine(count + ")" + dino.type + "(" + dino.health + ")");
                 count++;
+            }
+        }
+
+        public void TargetedAttack(Fleet enemy, int self, int target)
+        {
+            Random random = new Random();
+            int missChance = random.Next(11);
+            if (missChance != 1)
+            {
+                enemy.army[target - 1].health -= army[self].attackPower;
+            }
+            else
+            {
+                Console.WriteLine(army[self].type + "\'s attack missed.");
+            }
+            if (enemy.army[target-1].health <= 0)
+            {
+                Console.WriteLine(enemy.army[target-1].name + " died!");
+                enemy.army.Remove(enemy.army[target-1]);
+            }
+            else
+            {
+                Console.WriteLine(enemy.army[target-1].name + " has " + enemy.army[target-1].health + " health left!");
             }
         }
     }

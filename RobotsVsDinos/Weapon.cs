@@ -10,12 +10,14 @@ namespace RobotsVsDinos
     {
         public int damage;
         string name;
+        public string weaponType;
+        public int heal;
 
         public Weapon()
         {
             //Add a Healer Bot
             bool validChoice = false;
-            Console.WriteLine("What weapon would you like to use?\n1)Sword\n2)Gun\n3)Axe\n4)Bomb");
+            Console.WriteLine("What weapon would you like to use?\n1)Sword\n2)Gun\n3)Axe\n4)Bomb\n5)Healer");
             int weapon = Convert.ToInt32(Console.ReadLine());
             while (!validChoice)
             {
@@ -25,6 +27,7 @@ namespace RobotsVsDinos
                         {
                             this.name = "Sword";
                             this.damage = 3;
+                            this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
@@ -32,6 +35,7 @@ namespace RobotsVsDinos
                         {
                             this.name = "Gun";
                             this.damage = 6;
+                            this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
@@ -39,6 +43,7 @@ namespace RobotsVsDinos
                         {
                             this.name = "Axe";
                             this.damage = 5;
+                            this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
@@ -46,13 +51,15 @@ namespace RobotsVsDinos
                         {
                             this.name = "Bomb";
                             this.damage = 8;
+                            this.weaponType = "fight";
                             validChoice = true;
                             break;
                         }
                     case 5:
                         {
                             this.name = "Healer";//Start of Healer
-                            this.damage = 0;
+                            this.heal = 4;
+                            this.weaponType = "heal";
                             validChoice = true;
                             break;
                         }

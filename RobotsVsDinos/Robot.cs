@@ -13,6 +13,7 @@ namespace RobotsVsDinos
         public int powerLevel;
         public Weapon weapon;
         public int attackPower;
+        public int healPower;
 
         public Robot()
         {
@@ -21,7 +22,14 @@ namespace RobotsVsDinos
             Console.WriteLine("How much health does " + name + " have?");
             this.health = Convert.ToInt32(Console.ReadLine());
             this.weapon = new Weapon();
-            this.attackPower = weapon.damage;
+            if (this.weapon.weaponType == "fight")
+            {
+                this.attackPower = weapon.damage;
+            }
+            else
+            {
+                this.healPower = weapon.heal;
+            }
         }
         public Robot(string name, string weaponName, int damage)
         {
